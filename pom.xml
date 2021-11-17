@@ -8,6 +8,10 @@
     <artifactId>custom</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <build>
+        <finalName>DBComapre</finalName>
+    </build>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
