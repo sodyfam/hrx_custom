@@ -1,30 +1,24 @@
-package compare.utils;
-
-import lombok.extern.slf4j.Slf4j;
+package com.hanssak.compare.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@Slf4j
 public class PostConnection implements DbConnection{
 
 
   @Override
-  public Connection connection() {
+  public Connection connection(String ip, String port, String dbName, String userId, String passwd) {
     Connection conn = null;
 
     final String driver = "org.postgresql.Driver";
-    final String url = "jdbc:postgresql://127.0.0.1:5432/hsckdb";
-    final String id = "hsck";
-    final String password = "hsck2301";
+    final String url = "jdbc:postgresql://"+ip+":"+port+"/"+dbName;
+    final String id = userId;
+    final String password = passwd;
 
     try{
       Class.forName(driver);
-
       conn = DriverManager.getConnection(url, id, password);
-
-      log.info("PostSql DB Connect Success!!");
     }catch(SQLException | ClassNotFoundException e){
       e.printStackTrace();
     }

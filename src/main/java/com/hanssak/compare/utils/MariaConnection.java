@@ -1,28 +1,22 @@
-package compare.utils;
-
-import lombok.extern.slf4j.Slf4j;
+package com.hanssak.compare.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@Slf4j
 public class MariaConnection implements DbConnection{
   @Override
-  public Connection connection() {
+  public Connection connection(String ip, String port, String dbName, String userId, String passwd) {
     Connection conn = null;
 
     final String driver = "com.mysql.jdbc.Driver";
-    final String url = "dbc:mysql://192.168.17.199/isbsdb?connectTimeout=30000&socketTimeout=30000";
-    final String id = "isbs";
-    final String password = "isbs2301";
+    final String url = "dbc:mysql://"+ip+":"+port+"/"+dbName+"?connectTimeout=30000&socketTimeout=30000";
+    final String id = userId;
+    final String password = passwd;
 
     try{
       Class.forName(driver);
-
       conn = DriverManager.getConnection(url, id, password);
-
-      log.info("Maria DB Connect Success!!");
     }catch(SQLException | ClassNotFoundException e){
       e.printStackTrace();
     }

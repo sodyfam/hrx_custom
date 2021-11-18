@@ -1,6 +1,6 @@
-package compare.dao;
+package com.hanssak.compare.dao;
 
-import compare.domain.PolicyDto;
+import com.hanssak.compare.domain.PolicyDto;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,15 +11,15 @@ import java.util.List;
 
 public class PolicyDao {
 
-  public List<PolicyDto> getPolicy(Connection conn) {
+  public List<PolicyDto> getPolicy(Connection conn, String query) {
 
     ResultSet rs = null;
     List<PolicyDto> dtos = new ArrayList<>();
     try(Statement stmt = conn.createStatement();){
 
-      String query = "select svc.dest_ip, svc.dest_port, svc.dest_port2, svc.svc_mod, detail.src_ip"
-              +" from tbl_net_svc_port svc"
-              +" left outer join tbl_net_svc_port_detail_his detail on svc.svc_mid = detail.svc_mid ";
+//      String query = "select svc.dest_ip, svc.dest_port, svc.dest_port2, svc.svc_mod, detail.src_ip"
+//              +" from tbl_net_svc_port svc"
+//              +" left outer join tbl_net_svc_port_detail_his detail on svc.svc_mid = detail.svc_mid ";
 
       rs = stmt.executeQuery(query);
       while (rs.next()){

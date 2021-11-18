@@ -1,4 +1,4 @@
-package compare.domain;
+package com.hanssak.compare.domain;
 
 import lombok.*;
 
@@ -31,7 +31,7 @@ public class PolicyDto implements Cloneable {
   }
 
   public String getKey(){
-    return destIp +"."+ svcMod;
+    return srcIp +"."+ svcMod;
   }
 
   public void setPortRange(String portRange){
