@@ -15,6 +15,13 @@ import java.util.Scanner;
 public class CompareMgr {
 
   public static void main(String[] args) {
+//    String ip = "192.168.2.168";
+//    String port = "5432";
+//    String dbName = "hsckdb";
+//    String userId = "hsck";
+//    String userPwd = "hsck2301";
+
+
     String ip;
     String port;
     String dbName;
@@ -45,7 +52,7 @@ public class CompareMgr {
     String query2 = "select dest_ip, dest_port, dest_port2, svc_mod, src_ip from tbl_hira_b";
     List<PolicyDto> afterDtos = dao.getPolicy(newDb.connection(ip, port, dbName, userId, userPwd), query2);
 
-    scan.close();
+//    scan.close();
 
     System.out.println("==== 이전DB 데이터건수 : " + beforeDtos.size());
     System.out.println("==== 신규DB 데이터건수 : " + afterDtos.size());
@@ -58,9 +65,10 @@ public class CompareMgr {
     List<PolicyDto> targetDto = DataConverter.dataSplit(tmpDtos);
     Map<String, Map<String, List<Integer>>> map = DataConverter.dataMap(targetDto);
 
+    int index = 1;
     for(PolicyDto dto : beforeDtos){
       if(!commpare(dto, map)){
-        System.out.println("미존재 : " + dto);
+        System.out.println("미존재"+ index + " : " + dto); index++;
       }
     }
   }

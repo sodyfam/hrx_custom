@@ -24,11 +24,11 @@ public class PolicyDao {
       rs = stmt.executeQuery(query);
       while (rs.next()){
         dtos.add(PolicyDto.builder()
-                        .destIp(rs.getString(1))
+                        .destIp(rs.getString(1).trim())
                         .destPort(rs.getInt(2))
                         .destPort2(rs.getInt(3))
-                        .svcMod(rs.getString(4))
-                        .srcIp(rs.getString(5))
+                        .svcMod(rs.getString(4).trim())
+                        .srcIp(rs.getString(5).trim())
                         .portRange(rs.getInt(2) + "~" + rs.getInt(3))
                 .build());
       }

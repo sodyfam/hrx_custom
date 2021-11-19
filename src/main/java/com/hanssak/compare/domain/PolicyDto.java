@@ -38,4 +38,26 @@ public class PolicyDto implements Cloneable {
     this.portRange = portRange;
   }
 
+  public void changeDestListIp(int ip){
+    int index = destIp.lastIndexOf(".");
+    destIp = destIp.substring(0, index+1) + ip;
+  }
+
+  private boolean checkIpRange(String ip){
+    int index = ip.lastIndexOf(".");
+    return "0".equals(ip.substring(index+1));
+  }
+  public boolean checkSrcIpRange() {
+    return checkIpRange(srcIp);
+  }
+  public boolean checkDestIdRange() {
+    return checkIpRange(destIp);
+  }
+  
+
+  public int getDestPort2(){
+    return destPort2 == 0 ? destPort : destPort2;
+  }
+
+  
 }
